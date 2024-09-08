@@ -79,11 +79,54 @@ def longest_substring(string):
         
                 
     return [max, indeces_max]
+
+# def lengthOfLongestSubstring(s):
+#         """
+#         :type s: str
+#         :rtype: int
+#         """
+#         pointer_left = 0
+#         pointer_right = 0
+#         longest_len = 0
+#         char_kepet = {}
+#         for char in s:
+            
+#             if char in char_kepet and char_kepet[char] > pointer_left:
+#                 pointer_left = char_kepet[char]+1
+                
+#             if longest_len < pointer_right - pointer_left + 1:
+#                 longest_len = pointer_right - pointer_left + 1
+
+#             char_kepet[char] = pointer_right
+#             pointer_right+=1
+
+#         return longest_len
+
+def lengthOfLongestSubstring(s):
+    """
+    :type s: str
+    :rtype: int
+    """
+    pointer_left = 0
+    longest_len = 0
+    char_kepet = {}
+    
+    for pointer_right in range(len(s)):
+        char = s[pointer_right]
+        
+        if char in char_kepet and char_kepet[char] >= pointer_left:
+            pointer_left = char_kepet[char] + 1
+            
+        longest_len = max(longest_len, pointer_right - pointer_left + 1)
+
+        char_kepet[char] = pointer_right
+
+    return longest_len
             
     
-# string_long = "bhdgjsadoieqekjqwkhaszxc"
-# result = longest_substring(string_long)
-# print("RESULTO FINAL :", result)
+string_long = "bhdgjsadoieqekjqwkhaszxc"
+result = longest_substring(string_long)
+print("RESULTO FINAL String: ", result)
 
 '''
 Smallest Subarray with a Given Sum
@@ -174,13 +217,13 @@ class newDataStructure():
         avg = sum(self.coreData[:len(self.coreData)])/len(self.coreData)
         return avg
     
-brekeleData = newDataStructure()
-brekeleData.addNum(1)
-brekeleData.addNum(4)
-brekeleData.addNum(5)
-brekeleData.addNum(3)
-brekeleData.addNum(4)
-brekeleData.addNum(5)
-brekeleData.addNum(6)
-averageResult = brekeleData.getAverage()
-print("Average: ", averageResult)
+# brekeleData = newDataStructure()
+# brekeleData.addNum(1)
+# brekeleData.addNum(4)
+# brekeleData.addNum(5)
+# brekeleData.addNum(3)
+# brekeleData.addNum(4)
+# brekeleData.addNum(5)
+# brekeleData.addNum(6)
+# averageResult = brekeleData.getAverage()
+# print("Average: ", averageResult)
